@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table">
+    <thead class="thead">
+        <tr>
+            <th>#</th>
+            <th>Название</th>
+            <th>ISBN</th>
+            <th>Описание</th>
+            <th>Год выпуска</th>
+            <th>Автор</th>
+            <th>Страна</th>
+            <th>Кол-во копий</th>
+        </tr>
+    </thead>
+    {% for book in books %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.ISBN }}</td>
+        <td>{{ book.description }}</td>
+        <td>{{ book.year_release }}</td>
+        <td>{{ book.author.full_name }}</td>
+        <td>{{ book.author.country }}</td>
+        <td>{{ book.copy_count }}</td>
+        <td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

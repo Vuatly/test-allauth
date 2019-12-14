@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Create multiple authors</title>  
+
+<body>  
+<form method="post">
+{{ author_formset.management_form }}  
+	{% csrf_token %}  
+	{% for form in author_formset %}  
+		{{ form.as_ul }}  
+		<br>  
+	{% endfor %}
+    <input type="submit" value="Сохранить"/>  
+</form>  
+</body>  
+</html>
+
+{% endblock %}

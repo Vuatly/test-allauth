@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Необходимые Мета-теги всегда на первом месте -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %} Библиотека {% endblock title %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Навигация</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/library">Библиотека <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/redactions">Редакции</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/friends">Друзья</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/friend/create">Создать друга</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/accounts/logout">Выйти</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/accounts/login">Войти</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% load account %}
+        {% if user.is_authenticated %}
+        <h3> Привет, {% user_display user %} </h3>
+        {% else %}
+        <h3> Впервые тут? Вы можете войти <a href="/accounts/login">здесь.</a> </h3>
+        {% endif %}
+
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>

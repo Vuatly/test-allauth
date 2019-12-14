@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+<title>{% block title %} Форма создания и редактирования Авторов {% endblock title %}</title>  
+ 
+{% block content %}
+<form method="post">  
+	{% csrf_token %}  
+	{{ form.as_p }}  
+	<input type="submit" value="Сохранить">  
+</form>  
+{% endblock content %}
